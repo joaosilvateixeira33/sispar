@@ -1,49 +1,53 @@
-import {useNavigate} from "react-router-dom"
-//import Capa from "../../assets/Tela Login/imagem tela de login.png";
-import Logo from "../../assets/Tela Login/logo-ws.png";
+import { useNavigate } from "react-router-dom"
+import LoginBackgroud from "../../assets/Login/navio-cargueiro-wilson-sons.png"
+import LoginForm from "../../components/LoginForm/LoginForm"
+import LoginInput from "../../components/LoginInput/LoginInput"
+import LoginButton from "../LoginButton/LoginButton"
+import LoginButtonText from "../LoginButtonText/LoginButtonText"
 import styles from "./Login.module.scss"
 
-function Login() {
 
-const navigate = useNavigate() //Iniciando o hook useNavigate
+export default function Login(){
 
-const irParaReembolsos = () => {
-  navigate("/reembolsos")  //Redirecionando para a página de reembolsos
-}
+  const navigate = useNavigate()
+
+  const irReembolso = () => {
+    navigate("/reembolsos")
+  }
+
+const irSolicitacao = () => {
+    navigate("/solicitacao")
+  }
+
+
 
   return (
-    <main className={styles.mainLogin}>
-      <section className={styles.containerFoto}>
-        {/* <img src={Capa} alt="Foto de um navio cargueiro" /> */}
-      </section>
+    <main className ={ styles.login__wrapper }>
+      <img src = { LoginBackgroud } className ={ styles.login__background } />
 
-      <section className={styles.formWapper}>
-        <div className={styles.boxLogo}>
-          <img src={Logo} alt="Logo da wilson sons" />
-          <h1>Boas vindas ao Novo Portal SISPAR </h1>
-          <p>Sistema de Emissão de Boletos e Parcelamento</p>
-        </div>
-
-        <form action="">
-          <input type="email" name="email" id="email" placeholder="Email" />
-
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Senha"
-          />
-
-          <p>Esqueci minha senha</p>
-
-          <div className={styles.boxButton}>
-            <button onClick={irParaReembolsos}>Entrar</button>
-            <button>Criar conta</button>
+      <section className = { styles.login__content }>
+        <div className = { styles.login__contentWrapper }>
+          <div className = { styles.login__texts }>
+            <h1 className = { styles.login__brand }>Wilson Sons</h1>
+            <h2 className = { styles.login__welcome }>Boas Vindas ao Novo Portal SISPAR</h2>
+            <p  className = { styles.login__systemName }>Sistema de Emissão de Boletos e Parcelamento</p>
           </div>
 
-        </form>
+          <LoginForm>
+            <LoginInput placeholder = "Email" />
+            <LoginInput placeholder = "Senha" />
+            <LoginButtonText cta = "Esqueci minha senha" onClick = { irSolicitacao }/>
+          </LoginForm>
+
+          <div className = { styles.buttons__wrapper }>
+            <LoginButton cta = "Entrar" onClick = { irReembolso } />
+            <LoginButton cta = "Criar conta" onClick = { irSolicitacao }/>
+          </div>
+
+        </div>
       </section>
+
+
     </main>
-  );
+  )
 }
-export default Login;

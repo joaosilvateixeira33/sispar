@@ -1,53 +1,54 @@
-import Historico from "../../assets/Header/Botão - Histórico.png";
-import Home from "../../assets/Header/botão - Home.png";
-import Pesquisa from "../../assets/Header/Botão - Pesquisa.png";
-import Reembolso from "../../assets/Header/Botão - Reembolso.png";
-import Sair from "../../assets/Header/Botão - Sair.png";
-import Perfil from "../../assets/Header/image.png";
-import Fechar from "../../assets/Header/imagem-fechar-header.png";
-import styles from "./NavBar.module.scss";
 import { useNavigate } from "react-router-dom";
+import IconExit from "../../assets/NavBar/icon-exit.svg";
+import IconHistory from "../../assets/NavBar/icon-history.svg";
+import IconHome from "../../assets/NavBar/icon-home.svg";
+import IconMenu from "../../assets/NavBar/icon-menu.svg";
+import IconReembolso from "../../assets/NavBar/icon-money.svg";
+import IconSearch from "../../assets/NavBar/icon-search.svg";
+import IconUser from "../../assets/NavBar/icon-user.svg";
+import styles from "./NavBar.module.scss";
 
-function NavBar() {
-  const navigate = useNavigate();
+
+export default function NavBar() {
+  const navigate = useNavigate()
 
   return (
-    <nav className={styles.navBarEstilo}>
-      <button className={styles.buttonNavBar}>
-        <img src={Fechar} alt="Botão abrir e fechar" />
-      </button>
+    <nav className={styles.navbar__wrapper}>
+      <section className={styles.navbar__content}>
 
-      <section>
-        <img src={Perfil} alt="Foto do perfil" />
+        <button className={styles.menu__button}>
+          <img className={styles.menu__icon} src={IconMenu} alt="Menu" title="Menu" />
+        </button>
 
-        <div>
-          <button className={styles.buttonNavBar}
-            onClick={() => {
-              navigate("/reembolsos");
-            }}
-          >
-            <img src={Home} alt="Botão Home" />
+        <div className={styles.userTools__wrapper}>
+          <button className={styles.user__button}>
+            <img className={styles.user__icon} src={IconUser} alt="User" title="User" />
           </button>
 
-          <button onClick={()=>{navigate("/solicitacao")}}  className={styles.buttonNavBar}>
-            <img src={Reembolso} alt="Botão Reembolso" />
-          </button>
+          <div className={styles.tools__wrapper}>
+            <button className={styles.tools__button} onClick={ () => { navigate("/") } }>
+              <img className={styles.tools__icon} src={IconHome} alt="Home" title="Home"/>
+            </button>
 
-          <button onClick={()=>{navigate("/reembolsos")}}  className={styles.buttonNavBar}>
-            <img src={Pesquisa} alt="Botão Pesquisa" />
-          </button>
+            <button className={styles.tools__button} onClick={ () => { navigate("/reembolsos") } }>
+              <img className={styles.tools__icon} src={IconReembolso} alt="Reembolsos" title="Reembolsos"/>
+            </button>
 
-          <button onClick={()=>{navigate("/solicitacao")}}  className={styles.buttonNavBar}>
-            <img src={Historico} alt="Botão histórico" />
-          </button>
+            <button className={styles.tools__button} onClick={ () => { navigate("/solicitacao") } }>
+              <img className={styles.tools__icon} src={IconSearch} alt="Busca" title="Busca" />
+            </button>
+
+            <button className={styles.tools__button} onClick={ () => { navigate("/") } }>
+              <img className={styles.tools__icon} src={IconHistory} alt="Histórico" title="Histórico" />
+            </button>
+          </div>
         </div>
-      </section>
 
-      <button className={styles.buttonSair}  onClick={()=>{navigate("/")}} >
-        <img src={Sair} alt="Botão sair" />
-      </button>
+        <button className={styles.exit__button} onClick={ () => { navigate("/") } }>
+          <img className={styles.exit__icon} src={IconExit} alt="Sair" title="Sair" />
+        </button>
+
+      </section>
     </nav>
   );
 }
-
-export default NavBar;

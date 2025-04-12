@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Login from "./components/Login/Login.jsx"
+import Login from "./components/Login/Login"
 import Reembolsos from "./components/Reembolsos/Reembolsos"
 import Solicitacao from "./components/Solicitacao/Solicitacao"
 import "./global.scss"
